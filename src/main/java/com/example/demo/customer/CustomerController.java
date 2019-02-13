@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.io.*;
 import java.util.Base64;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -74,7 +75,9 @@ public class CustomerController {
             //This will decode the String which is encoded by using Base64 class
             byte[] imageByte = Base64.getDecoder().decode(pic.getImage());
 
-            String directory= "upload/sample.jpg";
+            String directory= "upload/"+new Date().getTime() +".jpg";
+
+            // ตัวอย่างชื่อรูปที่ถูกเปลี่ยน คือ 1550071999968.jpg
 
             new FileOutputStream(directory).write(imageByte);
             return ResponseEntity.ok().build();
